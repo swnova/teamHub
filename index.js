@@ -4,7 +4,8 @@ const Employee = require("./lib/employee.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 const Engineer = require("./lib/engineer.js");
-const teamArr = []
+const teamArr = [];
+const teamTemp = require('./src/template');
 
 
 const start = ()=>{
@@ -29,13 +30,13 @@ inquirer.prompt([
             case "employee":
                 newEmployee()
                 break;
-            case "finished":
+            default :
                 generateTeam()
                 break;
             
-            default:
-                console.log(`creating team member`)
-                break;
+            // default:
+            //     console.log(`creating team member`)
+            //     break;
         }
        
     })
@@ -160,7 +161,24 @@ const newManager = ()=>{
         console.table(teamArr);
     start()
     })
+}
+
+// function to write HTML
 
 
+
+const writeFile = (data) =>{
+    fs.writeFile('./dist/teams.html', data, (err)=>{
+        if(err) {
+            console.log(err);
+        } else {
+        console.log('Your team has been generated.');
+        }
+    })
+}
+
+generateTeam= ()=> {
+    writeFile(teamTemp(teamArr))
+   
 }
 start()
