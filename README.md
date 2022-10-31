@@ -2,6 +2,7 @@
 Object-Oriented Programming Challenge: Team Profile Generator
 
 ## Description 
+In this module the challenege is to build a node.js command line function to generate an html document.
 
 User Story:
 
@@ -29,3 +30,14 @@ THEN I am prompted to enter the intern’s name, ID, email, and school, and I am
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
 
+## Usage
+The application will be invoked by using the following command:
+
+node index.js
+
+#Challenges/future development
+create tests for classes
+fix bug for extention classes that causes data returned to be undefined
+
+
+<iframe src="https://drive.google.com/file/d/14MBcCPS7SqHfN0ggTC4_I6y8LcoZjmWj/preview" width="640" height="480"></iframe>
