@@ -19,16 +19,16 @@ inquirer.prompt([
     ]).then(ans => {
         switch(ans.role) {
             case "manager":
-                newManager()
+                newManager(ans.officeNumber)
                 break;
             case "intern":
-                newIntern()
+                newIntern(ans.schoolSel)
                 break;
             case "engineer":
-                newEngineer()
+                newEngineer(ans.github)
                 break;
             case "employee":
-                newEmployee()
+                newEmployee(ans.role)
                 break;
             default :
                 generateTeam()
@@ -43,7 +43,7 @@ inquirer.prompt([
    
 }
 
-const newEmployee = ()=>{
+const newEmployee = (role)=>{
     inquirer.prompt([
         {
             name: 'employeeName',
@@ -61,14 +61,14 @@ const newEmployee = ()=>{
             message: 'what is the id number?'
         }
     ]).then(ans =>{
-        const employee = new Employee(ans.employeeName, ans.employeeEmail, ans.id);
+        const employee = new Employee(ans.id, ans.employeeName, ans.employeeEmail, role);
         teamArr.push(employee);
         console.table(teamArr);
     start()
     })
 }
 
-const newIntern = ()=>{
+const newIntern = (role)=>{
     inquirer.prompt([
         {
             name: 'employeeName',
@@ -93,7 +93,7 @@ const newIntern = ()=>{
         }
 
     ]).then(ans=>{
-        const intern = new Intern(ans.employeeName, ans.employeeEmail, ans.id, ans.schoolSel);
+        const intern = new Intern(ans.id, ans.employeeName, ans.employeeEmail, ans.schoolSel, role);
         teamArr.push(intern);
         console.table(teamArr);
     start()
@@ -101,7 +101,7 @@ const newIntern = ()=>{
 }
 
 
-const newEngineer = ()=>{
+const newEngineer = (role)=>{
     inquirer.prompt([
         {
             name: 'employeeName',
@@ -124,7 +124,7 @@ const newEngineer = ()=>{
             message: 'what is your github username?'
         }
     ]).then(ans =>{
-        const engineer = new Engineer(ans.employeeName, ans.employeeEmail, ans.id, ans.github)
+        const engineer = new Engineer(ans.id, ans.employeeName, ans.employeeEmail, ans.github, role)
         teamArr.push(engineer)
         console.table(teamArr);
     start()
@@ -132,7 +132,7 @@ const newEngineer = ()=>{
         
 }
 
-const newManager = ()=>{
+const newManager = (role)=>{
     inquirer.prompt([
         {
             name: 'employeeName',
@@ -156,7 +156,7 @@ const newManager = ()=>{
         }
     
     ]).then(ans=>{
-        const manager = new Manager(ans.employeeName, ans.employeeEmail, ans.id, ans.officeNumber)
+        const manager = new Manager(ans.id, ans.employeeName, ans.employeeEmail, ans.officeNumber, role)
         teamArr.push(manager)
         console.table(teamArr);
     start()
